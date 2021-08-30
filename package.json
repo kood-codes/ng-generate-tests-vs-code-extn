@@ -1,0 +1,75 @@
+{
+	"name": "vs-code-ng-generate-tests",
+	"displayName": "Angular unit test generator",
+	"description": "Scaffolds unit test code for an angular file by scanning through the selected file",
+	"version": "1.0.0",
+	"engines": {
+		"vscode": "^1.41.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:ng:generateUnitTest"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "ng:generateUnitTest",
+				"title": "Scaffold angular unit tests",
+				"when": "resourceLangId == typescript"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "ng:generateUnitTest",
+					"when": "resourceLangId == typescript"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "ng:generateUnitTest",
+					"when": "editorLangId == typescript"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "webpack --mode production && node script.js",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch",
+		"test-compile": "tsc -p ./",
+		"vscode:prepublish1": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "node ./out/test/runTest.js",
+		"package": "vsce package"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.6",
+		"@types/node": "^10.12.21",
+		"@types/vscode": "^1.41.0",
+		"ejs-compiled-loader": "^1.1.0",
+		"ejs-loader": "^0.3.5",
+		"ejs-render-loader": "^1.0.0",
+		"glob": "^7.1.4",
+		"lodash": "^4.17.15",
+		"mocha": "^6.1.4",
+		"ts-loader": "^6.2.1",
+		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
+		"vsce": "^1.71.0",
+		"vscode-test": "^1.0.2",
+		"webpack": "^4.41.5",
+		"webpack-cli": "^3.3.10"
+	},
+	"dependencies": {
+		"fs-extra": "^8.1.0",
+		"ng-generate-tests": "file:ng-generate-tests-1.0.0.tgz"
+	},
+	"publisher": "koodal"
+}
